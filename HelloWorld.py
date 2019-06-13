@@ -1,27 +1,28 @@
 import turtle as tu
 #https://deptinfo-ensip.univ-poitiers.fr/ENS/doku/doku.php/stu:python:turtle
 
-def polygone(long, nbcotes):
-    for i in range(nbcotes):
-        tu.fd(long)
-        tu.rt(360 / nbcotes)
+
+def floc(l):
+    if l < 3:
+        tu.fd(l)
+        return
+    floc(l / 3)
+    tu.lt(60)
+    floc(l / 3)
+    tu.rt(120)
+    floc(l / 3)
+    tu.lt(60)
+    floc(l / 3)
 
 
-def frise(ang, long, nbcotes):
-    for i in range(720 // ang):
-        polygone(long, nbcotes)
-        tu.lt(ang)
-
-
-def main():
-    tu.setup(400, 400)  # Facultatif
-    tu.reset()
+def flocon(l):
     tu.speed(0)
-    tu.tracer(50, 0)
-    frise(3, 80, 5)
-    tu.update()
+    tu.color('#0000ff', '#55ffff')
+    tu.begin_fill()
+    for i in range(3):
+        floc(l)
+        tu.rt(120)
+    tu.end_fill()
 
 
-if __name__ == '__main__': main()
-tu.done()
-
+flocon(100)
